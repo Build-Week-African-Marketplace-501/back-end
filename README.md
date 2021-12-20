@@ -23,7 +23,7 @@ Deployed at:
 #### Get all owners - WIP
 
 ```http
-  GET /api/owners
+  GET /api/users
 ```
 
 Returns:
@@ -37,7 +37,7 @@ Returns:
 #### Get owner by owner_id - WIP
 
 ```http
-  GET /api/owners/:owner_id
+  GET /api/users/:user_id
 ```
 
 | Parameter  | Type     | Description                        |
