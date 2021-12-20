@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const { JWT_SECRET } = require('../../config')
 
-module.exports = (req, res, next) => {
+const restricted = (req, res, next) => {
   const token = req.headers.authorization
 
   if (!token) {
@@ -16,4 +16,16 @@ module.exports = (req, res, next) => {
     req.decodedJwt = decoded
     next()
   })
+}
+
+// eslint-disable-next-line
+const errorHandling = (err, req, res, next) => {
+  res.status(err.status || 500).json({
+    message: err.message,
+  })
+}
+
+module.exports = {
+  restricted,
+  errorHandling,
 }
