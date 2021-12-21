@@ -1,21 +1,13 @@
-const requiredString = (str) => {
-  return typeof str === 'string' && str !== undefined
-}
-
-const requiredInteger = (int) => {
-  return typeof int === 'number' && int !== undefined
-}
-
-const requiredPositiveInteger = (int) => {
-  return requiredInteger(int) && int > 0
-}
-
-const Validation = {
-  requiredString,
-  requiredInteger,
-  requiredPositiveInteger,
+// validates req.body using yup schema passed as schema
+const validator = (schema) => async (req, res, next) => {
+  try {
+    await schema.validate({ body: req.body })
+    next()
+  } catch (err) {
+    next({ status: 401, message: err })
+  }
 }
 
 module.exports = {
-  Validation,
+  validator,
 }
