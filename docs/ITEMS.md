@@ -25,13 +25,13 @@ Returns:
   "data": [
     {
       "item_id": "integer",
-      "description": "string",
-      "location": "string"
+      "item_description": "string",
+      "item_location": "string"
     },
     {
       "item_id": "integer",
-      "description": "string",
-      "location": "string"
+      "item_description": "string",
+      "item_location": "string"
     }
     // ...
   ]
@@ -62,9 +62,9 @@ Returns:
 {
   "data": {
     "item_id": "integer",
-    "description": "string",
-    "location": "string",
-    "creator": {
+    "item_description": "string",
+    "item_location": "string",
+    "item_creator": {
       "user_id": "integer",
       "username": "string"
     }
@@ -89,9 +89,9 @@ Request Body:
 ```json
 {
   "item_name": "string - required",
-  "description": "string - required",
-  "location": "string - required",
-  "price": "float - required"
+  "item_description": "string - required",
+  "item_location": "string - required",
+  "item_price": "float - required"
 }
 ```
 
@@ -126,9 +126,9 @@ Request Body:
 ```json
 {
   "item_name": "string - required",
-  "description": "string - required",
-  "location": "string - required",
-  "price": "float - required"
+  "item_description": "string - required",
+  "item_location": "string - required",
+  "item_price": "float - required"
 }
 ```
 
@@ -139,9 +139,9 @@ Returns:
   "data": {
     "item_id": "integer",
     "item_name": "string",
-    "description": "string",
-    "location": "string",
-    "price": "float"
+    "item_description": "string",
+    "item_location": "string",
+    "item_price": "float"
   }
 }
 ```
