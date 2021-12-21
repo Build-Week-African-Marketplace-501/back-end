@@ -42,7 +42,7 @@ Returns:
 
 ### `GET /api/items/:item_id` - _WIP_
 
-_Returns an array containing all items in the database._
+_Returns the item in the database with a specific item_id._
 
 Parameters:
 
@@ -113,7 +113,7 @@ Returns:
 
 ### `PUT /api/items/:item_id` - _WIP_
 
-_Replaces item in database by item_id with request body to and returns the updated item._
+_Replaces item in database by item_id with request body and returns the updated item._
 
 Parameters:
 

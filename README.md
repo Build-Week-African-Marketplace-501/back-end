@@ -14,6 +14,6 @@ Deployed at:
 
 ## API Reference
 
-[User Endpoint](USERS.md)  
-[Items Endpoint](ITEMS.md)  
-[Auth Endpoint](AUTH.md)
+[User Endpoint](/docs/USERS.md)  
+[Items Endpoint](/docs/ITEMS.md)  
+[Auth Endpoint](/docs/AUTH.md)

@@ -18,14 +18,15 @@ const restricted = (req, res, next) => {
   })
 }
 
-// eslint-disable-next-line
-const errorHandling = (err, req, res, next) => {
-  res.status(err.status || 500).json({
-    message: err.message,
-  })
-}
+const hashPassword = (req, res, next) => next()
+
+const authenticate = (req, res, next) => next()
+
+const constructToken = (req, res, next) => next()
 
 module.exports = {
   restricted,
-  errorHandling,
+  hashPassword,
+  authenticate,
+  constructToken,
 }
