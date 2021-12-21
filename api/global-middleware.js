@@ -4,7 +4,7 @@ const validator = (schema) => async (req, res, next) => {
     await schema.validate({ body: req.body })
     next()
   } catch (err) {
-    next({ status: 401, message: err })
+    next({ status: 401, message: err.message })
   }
 }
 
@@ -12,6 +12,7 @@ const validator = (schema) => async (req, res, next) => {
 const errorHandling = (err, req, res, next) => {
   res.status(err.status || 500).json({
     message: err.message,
+    stack: err.stack,
   })
 }
 

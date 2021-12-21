@@ -2,7 +2,7 @@ const router = require('express').Router()
 
 // const Items = require('./items-model')
 const { validator } = require('../global-middleware')
-const { itemSchema } = require('./items-schema')
+const { itemsSchema } = require('./items-schema')
 const { validateItemId } = require('./items-middleware')
 
 // [GET] /api/items
@@ -16,12 +16,12 @@ router.get('/:item_id', validateItemId, (req, res, next) => {
 })
 
 // [POST] /api/items
-router.post('/', validator(itemSchema), (req, res, next) => {
+router.post('/', validator(itemsSchema), (req, res, next) => {
   res.status(201).json({ message: 'WIP - [POST] /api/items', data: {} }).catch(next)
 })
 
 // [PUT] /api/items/:item_id
-router.put('/:item_id', [validator(itemSchema), validateItemId], (req, res, next) => {
+router.put('/:item_id', [validator(itemsSchema), validateItemId], (req, res, next) => {
   res.json({ message: 'WIP - [PUT] /api/items/:item_id', data: {} }).catch(next)
 })
 

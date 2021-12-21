@@ -40,6 +40,8 @@ Returns:
 
 ### `GET /api/users/:user_id` - _WIP_
 
+_Returns the user in the database with a specific user_id._
+
 Parameters:
 
 ```json
@@ -73,6 +75,8 @@ Returns:
 
 ### `GET /api/users/:user_id/items` - _WIP_
 
+_Returns the items in the database with a specific user_id._
+
 Parameters:
 
 ```json
@@ -102,5 +106,37 @@ Returns:
     }
     // ...
   ]
+}
+```
+
+---
+
+### `PUT /api/users/:user_id` - _WIP_
+
+_Replaces user in database by user_id with request body and returns the updated user._
+
+Parameters:
+
+```json
+user_id: integer
+```
+
+Request Body:
+
+```json
+{
+  "username": "string - required",
+  "password": "string - required"
+}
+```
+
+Returns:
+
+```json
+{
+  "data": {
+    "user_id": "integer",
+    "username": "string"
+  }
 }
 ```

@@ -2,14 +2,14 @@ const router = require('express').Router()
 
 // const Users = require('../users/user-model')
 const { validator } = require('../global-middleware')
-const { registerSchema, loginSchema } = require('./auth-schema')
+const { userSchema } = require('../users/user-schema')
 const { usernameIsUnique, userIdExists } = require('../users/user-middleware')
 const { hashPassword, authenticate, constructToken } = require('./auth-middleware')
 
 // [POST] /api/auth/register
 router.post(
   '/register',
-  [validator(registerSchema), usernameIsUnique, hashPassword],
+  [validator(userSchema), usernameIsUnique, hashPassword],
   (req, res, next) => {
     res.status(201).json({ message: '[POST] /api/auth/register' }).catch(next)
   }
@@ -18,7 +18,7 @@ router.post(
 // [POST] /api/auth/login
 router.post(
   '/login',
-  [validator(loginSchema), userIdExists, authenticate, constructToken],
+  [validator(userSchema), userIdExists, authenticate, constructToken],
   (req, res, next) => {
     res.json({ message: '[POST] /api/auth/login', data: {} }).catch(next)
   }
