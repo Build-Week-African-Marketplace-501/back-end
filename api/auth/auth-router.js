@@ -1,21 +1,32 @@
 const router = require('express').Router()
 
-const Users = require('../users/user-model')
-const {
-  validateUsernameAndPassword,
-  validateUniqueUsername,
-  hashPassword,
-} = require('./auth-middleware')
+// const Users = require('../users/user-model')
+const { validator } = require('../global-middleware')
+const { registerSchema, loginSchema } = require('./auth-schema')
+const { usernameIsUnique, userIdExists } = require('../users/user-middleware')
+const { hashPassword, authenticate, constructToken } = require('./auth-middleware')
 
 // [POST] /api/auth/register
 router.post(
   '/register',
-  [validateUsernameAndPassword, validateUniqueUsername, hashPassword],
+  [validator(registerSchema), usernameIsUnique, hashPassword],
   (req, res, next) => {
-    Users.insert(req.user)
-      .then((saved) => {
-        res.status(201).json({ data: saved })
-      })
-      .catch(next)
+    res.status(201).json({ message: '[POST] /api/auth/register' }).catch(next)
   }
 )
+
+// [POST] /api/auth/login
+router.post(
+  '/login',
+  [validator(loginSchema), userIdExists, authenticate, constructToken],
+  (req, res, next) => {
+    res.json({ message: '[POST] /api/auth/login', data: {} }).catch(next)
+  }
+)
+
+// [GET] /api/auth/logout
+router.get('/logout', (req, res, next) => {
+  res.json({ message: '[GET] /api/auth/logout' }).catch(next)
+})
+
+module.exports = router

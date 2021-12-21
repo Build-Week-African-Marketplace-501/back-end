@@ -18,6 +18,15 @@ const restricted = (req, res, next) => {
   })
 }
 
+const hashPassword = (req, res, next) => next()
+
+const authenticate = (req, res, next) => next()
+
+const constructToken = (req, res, next) => next()
+
 module.exports = {
   restricted,
+  hashPassword,
+  authenticate,
+  constructToken,
 }

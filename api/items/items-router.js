@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
 })
 
 // [GET] /api/items/:item_id
-router.get('/:item_id', (req, res, next) => {
+router.get('/:item_id', validateItemId, (req, res, next) => {
   res.status(201).json({ message: 'WIP - [GET] /api/items/:item_id', data: {} }).catch(next)
 })
 
@@ -26,7 +26,7 @@ router.put('/:item_id', [validator(itemSchema), validateItemId], (req, res, next
 })
 
 // [DELETE] /api/items/:item_id
-router.delete('/:item_id', [validateItemId], (req, res, next) => {
+router.delete('/:item_id', validateItemId, (req, res, next) => {
   res.json({ message: 'WIP - [DELETE] /api/items/:item_id', data: {} }).catch(next)
 })
 
