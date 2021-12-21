@@ -4,7 +4,7 @@ const validator = (schema) => async (req, res, next) => {
     await schema.validate({ body: req.body })
     next()
   } catch (err) {
-    next({ status: 401, message: err.message })
+    next({ status: 401, ...err })
   }
 }
 

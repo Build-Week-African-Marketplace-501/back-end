@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const router = require('express').Router()
 
 // const Users = require('./user-model.js')
@@ -7,17 +9,17 @@ const { userIdExists } = require('./user-middleware')
 
 // [GET] /api/users
 router.get('/', (req, res, next) => {
-  res.json({ message: 'WIP - [GET] /api/users', data: [] }).catch(next)
+  res.json({ message: 'WIP - [GET] /api/users', data: [] })
 })
 
 // [GET] /api/users/:user_id
 router.get('/:user_id', userIdExists, (req, res, next) => {
-  res.json({ message: 'WIP - [GET] /api/users/:user_id', data: {} }).catch(next)
+  res.json({ message: 'WIP - [GET] /api/users/:user_id', data: {} })
 })
 
 // [GET] /api/users/:user_id/items
 router.get('/:user_id/items', userIdExists, (req, res, next) => {
-  res.json({ message: 'WIP - [GET] /api/users/:user_id/items', data: [] }).catch(next)
+  res.json({ message: 'WIP - [GET] /api/users/:user_id/items', data: [] })
 })
 
 // POST route might not be necessary, should use /auth/register instead
@@ -28,7 +30,7 @@ router.get('/:user_id/items', userIdExists, (req, res, next) => {
 
 // [PUT] /api/users/:user_id
 router.put('/:user_id', [validator(userSchema), userIdExists], (req, res, next) => {
-  res.json({ message: 'WIP - [PUT] /api/users/:user_id', data: {} }).catch(next)
+  res.json({ message: 'WIP - [PUT] /api/users/:user_id', data: {} })
 })
 
 module.exports = router
