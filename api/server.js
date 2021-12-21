@@ -3,7 +3,7 @@ const helmet = require('helmet')
 const cors = require('cors')
 const db = require('./data/db-config')
 const userRouter = require('./users/user-router.js')
-
+const itemsRouter = require('../items/items-router.js');
 function getAllUsers() {
   return db('users')
 }
@@ -21,7 +21,7 @@ server.use(express.json())
 server.use(helmet())
 server.use(cors())
 server.use('/api/users', userRouter)
-
+server.use('/api', itemsRouter);
 
 
 server.post('/api/users', async (req, res) => {
