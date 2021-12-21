@@ -1,6 +1,11 @@
 const router = require('express').Router()
 
-const Users = null
+const Users = require('../users/user-model')
+const {
+  validateUsernameAndPassword,
+  validateUniqueUsername,
+  hashPassword,
+} = require('./auth-middleware')
 
 // [POST] /api/auth/register
 router.post(

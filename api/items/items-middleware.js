@@ -1,4 +1,4 @@
-const Items = require('../model')
+const Items = require('./items-model')
 
 const validateItemId = (req, res, next) => {
   Items.getBy('item_id', parseInt(req.params.item_id)).then((item) => {

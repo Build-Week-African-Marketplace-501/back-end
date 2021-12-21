@@ -8,6 +8,14 @@ const validator = (schema) => async (req, res, next) => {
   }
 }
 
+// eslint-disable-next-line
+const errorHandling = (err, req, res, next) => {
+  res.status(err.status || 500).json({
+    message: err.message,
+  })
+}
+
 module.exports = {
   validator,
+  errorHandling,
 }

@@ -1,53 +1,33 @@
-const router = require("express").Router();
-const {validateUser} = require('./user-middleware');
-const Users = require("./user-model.js");
+const router = require('express').Router()
 
-// will add a restricted modules
-router.get("/users",  (req, res) => {
-  Users.find()
-    .then(users => {
-      res.json(users);
-    })
-    .catch(err => res.send(err));
-});
+// const Users = require('./user-model.js')
+const { validator } = require('../global-middleware')
+const { addUserSchema } = require('./user-schema')
+const { validateUserId } = require('./user-middleware')
 
-// will add a restricted modules
-router.get("/:id",  (req, res) => {
-  const id = req.params.id
-    Users.findById(id)
-    .then(user => {
-        if(user){
-          res
-          .status(200)
-          .json(user)
-        } else {
-          res
-          .status(404)//basic error  for user_id not found
-          .json({ message: "The user with the specified id could not be found."})
-        }
-    })
-    .catch(error => {
-        res
-        .status(500)
-        .json({ message: "The server could not retrieve the user. Error on server end.", error})
-    })
+// [GET] /api/users
+router.get('/users', (req, res, next) => {
+  res.json({ message: 'WIP - [GET] /api/users', data: [] }).catch(next)
 })
 
-
-router.post('/', validateUser, (req, res, next) => { 
-  Users.add (req.body)
-    .then(newUser => {
-      res.status(201).json(newUser);
-    })
-    .catch(next);
-});
-
-router.delete('/:id', (req, res, next) => {
-  Users.remove(req.params.id)
-    .then(del => {
-      res.json({ message: 'user has been removed',del})
-    })
-    .catch(next)
+// [GET] /api/users/:user_id
+router.get('/:id', validateUserId, (req, res, next) => {
+  res.json({ message: 'WIP - [GET] /api/users/:user_id', data: {} }).catch(next)
 })
 
-module.exports = router;
+// [POST] /api/users
+router.post('/', validator(addUserSchema), (req, res, next) => {
+  res.status(201).json({ message: 'WIP - [POST] /api/users', data: {} }).catch(next)
+})
+
+// [PUT] /api/users/:user_id
+router.put('/:user_id', [validator(addUserSchema), validateUserId], (req, res, next) => {
+  res.json({ message: 'WIP - [PUT] /api/users/:user_id', data: {} }).catch(next)
+})
+
+// [DELETE] /api/users/:user_id
+router.delete('/:id', validateUserId, (req, res, next) => {
+  res.json({ message: 'WIP - [DELETE] /api/users/:user_id', data: {} }).catch(next)
+})
+
+module.exports = router
