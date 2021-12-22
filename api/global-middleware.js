@@ -16,17 +16,17 @@ const errorHandling = (err, req, res, next) => {
   })
 }
 
-const sendEntries = (key) => (req, res) => res.json({ data: req[key] })
+const sendEntries = (key) => (req, res) => res.json(req[key])
 
-const sendUnpackedEntry = (key) => (req, res) => res.json({ data: req[key] })
+const sendUnpackedEntry = (key) => (req, res) => res.json(req[key])
 
 const sendEntry =
   (key, status = 200) =>
   (req, res) => {
-    res.status(status).json({ data: { [key]: req[key] } })
+    res.status(status).json({ [key]: req[key] })
   }
 
-const sendEntryId = (key, idKey) => (req, res) => res.json({ data: { [idKey]: req[key][idKey] } })
+const sendEntryId = (key, idKey) => (req, res) => res.json({ [idKey]: req[key][idKey] })
 
 const sendMessage = (message) => (req, res) => res.json({ message })
 
