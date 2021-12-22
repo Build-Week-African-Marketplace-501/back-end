@@ -1,4 +1,7 @@
-// const Users = require('./user-model.js')
+ 
+ 
+ 
+ const users = require('./user-model.js')
 
 const usernameIsUnique = (req, res, next) =>{
   

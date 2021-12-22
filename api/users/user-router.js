@@ -1,8 +1,8 @@
 /* eslint-disable */
 
 const router = require('express').Router()
+const users = require('./user-model.js')
 
-// const Users = require('./user-model.js')
 const { validator } = require('../global-middleware')
 const { userSchema } = require('./user-schema')
 const { userIdExists } = require('./user-middleware')

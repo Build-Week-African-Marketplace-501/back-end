@@ -1,4 +1,4 @@
-const db = require('../data/db-Config')
+const db = require('../../data/db-Config')
 
 module.exports = {
   add,
@@ -6,6 +6,7 @@ module.exports = {
   findBy,
   findById,
   remove,
+  
   findUserIdItems
 }
 
