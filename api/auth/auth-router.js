@@ -5,7 +5,8 @@ const router = require('express').Router()
 // const Users = require('../users/user-model')
 const { validator } = require('../global-middleware')
 const { userSchema } = require('../users/user-schema')
-const { usernameIsUnique, userIdExists } = require('../users/user-middleware')
+const { usernameIsUnique, } = require('../users/user-middleware')
+const {  userIdExists } = require('../users/user-validation')
 const { hashPassword, authenticate, constructToken } = require('./auth-middleware')
 
 // [POST] /api/auth/register

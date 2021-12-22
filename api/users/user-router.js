@@ -5,7 +5,7 @@ const users = require('./user-model.js')
 
 const { validator } = require('../global-middleware')
 const { userSchema } = require('./user-schema')
-const { userIdExists } = require('./user-middleware')
+const { userIdExists } = require('./user-validation')
 
 // [GET] /api/users
 router.get('/', (req, res, next) => {
@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
 
 // [GET] /api/users/:user_id
 router.get('/:user_id', userIdExists, (req, res, next) => {
-  const id = req.params.user_id
+  const {id} = req.params.user_id
     users.findById(id)
     .then(user => {
         if(user){
@@ -40,7 +40,7 @@ router.get('/:user_id', userIdExists, (req, res, next) => {
  
 
 // [GET] /api/users/:user_id/items
-router.get('/:user_id/items', userIdExists, (req, res, next) => {
+router.get('/:user_id/items', userIdExists , (req, res, next) => {
    users.findBy('users.user_id','items','items.user_id')   
       .then((item) => {
         req.items = item
