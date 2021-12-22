@@ -2,7 +2,7 @@
 
 ---
 
-### `GET /api/items` - _DONE - except auth_
+### `GET /api/items` - _Fully Implemented_
 
 _Returns an array containing all items in the database._
 
@@ -44,7 +44,7 @@ Returns:
 
 ---
 
-### `GET /api/items/:item_id` - _DONE - except auth_
+### `GET /api/items/:item_id` - _Fully Implemented_
 
 _Returns the item in the database with a specific item_id._
 
@@ -79,7 +79,7 @@ Returns:
 
 ---
 
-### `POST /api/items` - _DONE - except auth_
+### `POST /api/items` - _Fully Implemented_
 
 _Adds request body to database as a new item and returns the new item._
 
@@ -116,7 +116,7 @@ Returns:
 
 ---
 
-### `PUT /api/items/:item_id` - _DONE - except auth_
+### `PUT /api/items/:item_id` - _Fully Implemented_
 
 _Replaces item in database by item_id with request body and returns the updated item._
 
@@ -153,7 +153,7 @@ Returns:
 
 ---
 
-### `DELETE /api/items/:item_id` - _DONE - except auth_
+### `DELETE /api/items/:item_id` - _Fully Implemented_
 
 _Removes item from database using item_id and returns the item_id of the deleted item._
 

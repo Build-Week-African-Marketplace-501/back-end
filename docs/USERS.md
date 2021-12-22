@@ -1,6 +1,6 @@
 # Users
 
-### `GET /api/users` - _WIP_
+### `GET /api/users` - _Fully Implemented_
 
 _Returns an array of all users in the database._
 
@@ -38,7 +38,7 @@ Returns:
 
 ---
 
-### `GET /api/users/:user_id` - _WIP_
+### `GET /api/users/:user_id` - _Fully Implemented_
 
 _Returns the user in the database with a specific user_id._
 
@@ -73,7 +73,7 @@ Returns:
 
 ---
 
-### `GET /api/users/:user_id/items` - _WIP_
+### `GET /api/users/:user_id/items` - _Fully Implemented_
 
 _Returns the items in the database with a specific user_id._
 
@@ -96,13 +96,17 @@ Returns:
   "data": [
     {
       "item_id": "integer",
-      "description": "string",
-      "location": "string"
+      "item_name": "string",
+      "item_description": "string",
+      "item_location": "string",
+      "item_price": "float"
     },
     {
       "item_id": "integer",
-      "description": "string",
-      "location": "string"
+      "item_name": "string",
+      "item_description": "string",
+      "item_location": "string",
+      "item_price": "float"
     }
     // ...
   ]
@@ -111,7 +115,7 @@ Returns:
 
 ---
 
-### `PUT /api/users/:user_id` - _WIP_
+### `PUT /api/users/:user_id` - _NOT IMPLEMENTED_
 
 _Replaces user in database by user_id with request body and returns the updated user._
 

@@ -2,7 +2,8 @@ const db = require('../data/db-config')
 
 const get = (table) => db(table)
 
-const getBy = (table, filter) => {
+const getBy = (table, filter, all = false) => {
+  if (all) return db(table).where(filter)
   return db(table).where(filter).first()
 }
 
