@@ -20,7 +20,7 @@ router.get('/', (req, res, next) => {
 // [GET] /api/users/:user_id
 router.get('/:user_id', userIdExists, (req, res, next) => {
   const id = req.params.user_id
-    Users.findById(id)
+    users.findById(id)
     .then(user => {
         if(user){
           res.status(200)
