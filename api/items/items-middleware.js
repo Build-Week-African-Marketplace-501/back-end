@@ -83,12 +83,14 @@ const deleteItem = (req, res, next) => {
     .catch(next)
 }
 
-const sendItems = (req, res) => res.json({ data: req.items })
+const convertItemPrice = (item) => ({ ...item, item_price: parseFloat(item.item_price) })
+
+const sendItems = (req, res) => res.json({ data: req.items.map(convertItemPrice) })
 
 const sendItem =
   (status = 200) =>
   (req, res) =>
-    res.status(status).json({ data: req.item })
+    res.status(status).json({ data: convertItemPrice(req.item) })
 
 const sendItemId = (req, res) => res.json({ item_id: req.item.item_id })
 
