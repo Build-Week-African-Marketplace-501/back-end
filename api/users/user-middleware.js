@@ -7,7 +7,7 @@ const usernameIsUnique = (req, res, next) =>{
     if (user === undefined) {
       next();
     } else {
-      res.status(400).json({ error: "User exists" });
+      res.status(400).json({ error: "User does not exists" });
     }
   });
 }
