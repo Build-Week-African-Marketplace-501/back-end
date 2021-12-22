@@ -9,7 +9,7 @@ Sauti Africa empowers small business owners, particularly women, to improve thei
 Deployed at:
 
 ```
-  https://bw-african-marketplace-501.herokuapp.com/
+https://bw-african-marketplace-501.herokuapp.com/
 ```
 
 ## API Reference

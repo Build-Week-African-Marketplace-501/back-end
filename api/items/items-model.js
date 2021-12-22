@@ -1,71 +1,17 @@
-const mockItems = [
-  {
-    item_id: 1,
-    item_name: 'test item 1',
-    description: 'lorem ipsum 1',
-    location: 'New York, NY',
-    creator: {
-      user_id: 1,
-      username: 'test_user_1',
-    },
-  },
+const db = require('../../data/db-config')
 
-  {
-    item_id: 2,
-    item_name: 'test item 2',
-    description: 'lorem ipsum 2',
-    location: 'New York, NY',
-    creator: {
-      user_id: 1,
-      username: 'test_user_1',
-    },
-  },
+const get = () => db('items')
 
-  {
-    item_id: 3,
-    item_name: 'test item 3',
-    description: 'lorem ipsum 3',
-    location: 'New York, NY',
-    creator: {
-      user_id: 2,
-      username: 'test_user_2',
-    },
-  },
-]
-
-const get = () => {
-  return mockItems
-}
-
-const getBy = (key, value) => {
-  return mockItems.find((item) => item[key] === parseInt(value))
-}
+const getBy = (filter) => db('items').where(filter).first()
 
 const add = (item) => {
-  const item_id = mockItems.length
-  mockItems.push({
-    ...item,
-    item_id,
-    creator: {
-      user_id: 2,
-      username: 'test_user_2',
-    },
-  })
-  return getBy('item_id', item_id)
-}
-
-const update = (item_id, updatedItem) => {
-  mockItems.forEach((item, index) => {
-    if (item.item_id === item_id) mockItems[index] = updatedItem
-  })
-  return getBy('item_id', item_id)
+  return db('items').insert(item, ['*'])
 }
 
 module.exports = {
   get,
   getBy,
   add,
-  update,
 }
 
 /**

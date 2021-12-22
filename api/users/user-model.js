@@ -18,6 +18,7 @@ function findBy(filter) {
 function findById(id) {
   return db('users').select('user_id:', 'username').where({ id }).first()
 }
+
 //this is connected to the post user endpoint to add a user
 async function add(user) {
   const [id] = await db('users').insert(user, ['user_id', 'username', 'password'])
