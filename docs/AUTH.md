@@ -9,7 +9,7 @@ _Registers a new user in the database and returns nothing._
 Parameters:
 
 ```json
-null
+
 ```
 
 Request Body:
@@ -24,7 +24,7 @@ Request Body:
 Returns:
 
 ```json
-{}
+
 ```
 
 ---
@@ -36,7 +36,7 @@ _Authenticates a user based on username and password and returns the username, u
 Parameters:
 
 ```json
-null
+
 ```
 
 Request Body:
@@ -69,21 +69,19 @@ _Returns a farewell message._
 Parameters:
 
 ```json
-null
+
 ```
 
 Request Body:
 
 ```json
-null
+
 ```
 
 Returns:
 
 ```json
 {
-  "data": {
-    "message": "string"
-  }
+  "message": "string"
 }
 ```

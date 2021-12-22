@@ -9,13 +9,13 @@ _Returns an array containing all items in the database._
 Parameters:
 
 ```json
-null
+
 ```
 
 Request Body:
 
 ```json
-null
+
 ```
 
 Returns:
@@ -25,13 +25,17 @@ Returns:
   "data": [
     {
       "item_id": "integer",
+      "item_name": "string",
       "item_description": "string",
-      "item_location": "string"
+      "item_location": "string",
+      "item_price": "float"
     },
     {
       "item_id": "integer",
+      "item_name": "string",
       "item_description": "string",
-      "item_location": "string"
+      "item_location": "string",
+      "item_price": "float"
     }
     // ...
   ]
@@ -53,7 +57,7 @@ item_id: integer
 Request Body:
 
 ```json
-null
+
 ```
 
 Returns:
@@ -62,6 +66,7 @@ Returns:
 {
   "data": {
     "item_id": "integer",
+    "item_name": "string",
     "item_description": "string",
     "item_location": "string",
     "item_creator": {
@@ -81,7 +86,7 @@ _Adds request body to database as a new item and returns the new item._
 Parameters:
 
 ```json
-null
+
 ```
 
 Request Body:
@@ -161,7 +166,7 @@ item_id: integer
 Request Body:
 
 ```json
-null
+
 ```
 
 Returns:

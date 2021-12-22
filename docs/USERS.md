@@ -7,13 +7,13 @@ _Returns an array of all users in the database._
 Parameters:
 
 ```json
-null
+
 ```
 
 Request Body:
 
 ```json
-null
+
 ```
 
 Returns:
@@ -51,7 +51,7 @@ user_id: integer
 Request Body:
 
 ```json
-null
+
 ```
 
 Returns:
@@ -86,7 +86,7 @@ user_id: integer
 Request Body:
 
 ```json
-null
+
 ```
 
 Returns:
