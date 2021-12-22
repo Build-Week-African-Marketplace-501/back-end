@@ -1,35 +1,34 @@
-/* eslint-disable */
-
 const router = require('express').Router()
 
-// const Items = require('./items-model')
 const { validator } = require('../global-middleware')
-const { itemsSchema } = require('./items-schema')
-const { validateItemId } = require('./items-middleware')
+const { newItemSchema, updatedItemSchema } = require('./items-schema')
+const {
+  getItems,
+  getItemAndUser,
+  getItem,
+  constructItemAndUser,
+  itemExists,
+  constructItem,
+  addItem,
+  updateItem,
+  deleteItem,
+  sendItems,
+  sendItem,
+  sendItemId,
+} = require('./items-middleware')
 
-// [GET] /api/items
-router.get('/', (req, res, next) => {
-  res.json({ message: 'WIP - [GET] /api/items', data: [] })
-})
+router.get('/', [getItems], sendItems)
 
-// [GET] /api/items/:item_id
-router.get('/:item_id', validateItemId, (req, res, next) => {
-  res.status(201).json({ message: 'WIP - [GET] /api/items/:item_id', data: {} })
-})
+router.get('/:item_id', [getItemAndUser, itemExists, constructItemAndUser], sendItem())
 
-// [POST] /api/items
-router.post('/', validator(itemsSchema), (req, res, next) => {
-  res.status(201).json({ message: 'WIP - [POST] /api/items', data: {} })
-})
+router.post('/', [validator(newItemSchema), constructItem, addItem], sendItem(201))
 
-// [PUT] /api/items/:item_id
-router.put('/:item_id', [validator(itemsSchema), validateItemId], (req, res, next) => {
-  res.json({ message: 'WIP - [PUT] /api/items/:item_id', data: {} })
-})
+router.put(
+  '/:item_id',
+  [validator(updatedItemSchema), getItem, itemExists, constructItem, updateItem],
+  sendItem()
+)
 
-// [DELETE] /api/items/:item_id
-router.delete('/:item_id', validateItemId, (req, res, next) => {
-  res.json({ message: 'WIP - [DELETE] /api/items/:item_id', data: {} })
-})
+router.delete('/:item_id', [getItem, itemExists, deleteItem], sendItemId)
 
 module.exports = router
