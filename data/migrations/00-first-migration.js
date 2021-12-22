@@ -4,7 +4,7 @@ exports.up = async (knex) => {
       users.increments('user_id')
       users.string('username', 128).notNullable()
       users.string('password', 512).notNullable()
-      users.timestamps(false, true)
+      // users.timestamps(false, true)
     })
     .createTable('items', (items) => {
       items.increments('item_id')
@@ -20,7 +20,7 @@ exports.up = async (knex) => {
         .inTable('users')
         .onDelete('RESTRICT')
         .onUpdate('RESTRICT')
-      items.timestamps(false, true)
+      // items.timestamps(false, true)
     })
 }
 
