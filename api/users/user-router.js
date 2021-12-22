@@ -1,36 +1,62 @@
 /* eslint-disable */
 
 const router = require('express').Router()
+const users = require('./user-model.js')
 
-// const Users = require('./user-model.js')
 const { validator } = require('../global-middleware')
 const { userSchema } = require('./user-schema')
-const { userIdExists } = require('./user-middleware')
+const { userIdExists } = require('./user-validation')
 
 // [GET] /api/users
 router.get('/', (req, res, next) => {
-  res.json({ message: 'WIP - [GET] /api/users', data: [] })
+  users
+    .find()
+    .then((users) => {
+      res.json(users)
+    })
+    .catch(next)
 })
 
 // [GET] /api/users/:user_id
 router.get('/:user_id', userIdExists, (req, res, next) => {
-  res.json({ message: 'WIP - [GET] /api/users/:user_id', data: {} })
+  const { id } = req.params.user_id
+  users
+    .findById(id)
+    .then((user) => {
+      if (user) {
+        res.status(200).json(user)
+      } else {
+        res.status(404).json({ message: 'The user  could not be found.' })
+      }
+    })
+    .catch((error) => {
+      res
+        .status(500)
+        .json({ message: 'The server could not retrieve the user. Error on server end.', error })
+    })
 })
 
 // [GET] /api/users/:user_id/items
 router.get('/:user_id/items', userIdExists, (req, res, next) => {
-  res.json({ message: 'WIP - [GET] /api/users/:user_id/items', data: [] })
+  users
+    .findBy('users.user_id', 'items', 'items.user_id')
+    .then((item) => {
+      req.items = item
+      next()
+    })
+    .catch(next)
 })
-
-// POST route might not be necessary, should use /auth/register instead
-// // [POST] /api/users
-// router.post('/', validator(userSchema), (req, res, next) => {
-//   res.status(201).json({ message: 'WIP - [POST] /api/users', data: {} }).catch(next)
-// })
 
 // [PUT] /api/users/:user_id
 router.put('/:user_id', [validator(userSchema), userIdExists], (req, res, next) => {
-  res.json({ message: 'WIP - [PUT] /api/users/:user_id', data: {} })
+  users
+    .add(req.params.user_id, req.body.items)
+    .then((item) => {
+      res.json(item)
+    })
+    .catch((error) => {
+      next(error)
+    })
 })
 
 module.exports = router
