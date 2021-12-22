@@ -83,12 +83,12 @@ const deleteItem = (req, res, next) => {
     .catch(next)
 }
 
-const sendItems = (req, res) => res.send(req.items)
+const sendItems = (req, res) => res.json({ data: req.items })
 
 const sendItem =
   (status = 200) =>
   (req, res) =>
-    res.status(status).send(req.item)
+    res.status(status).json({ data: req.item })
 
 const sendItemId = (req, res) => res.json({ item_id: req.item.item_id })
 
