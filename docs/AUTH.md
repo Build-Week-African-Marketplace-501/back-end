@@ -2,7 +2,7 @@
 
 ---
 
-### `POST /api/auth/register` - _WIP_
+### `POST /api/auth/register` - _Fully Implemented_
 
 _Registers a new user in the database and returns nothing._
 
@@ -29,7 +29,7 @@ Returns:
 
 ---
 
-### `POST /api/auth/login` - _WIP_
+### `POST /api/auth/login` - _Fully Implemented_
 
 _Authenticates a user based on username and password and returns the username, user_id, and a generated JWT._
 
@@ -62,7 +62,7 @@ Returns:
 
 ---
 
-### `GET /api/auth/logout` - _WIP_
+### `GET /api/auth/logout` - _Fully Implemented_
 
 _Returns a farewell message._
 
