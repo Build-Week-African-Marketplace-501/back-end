@@ -37,7 +37,7 @@ const getItem = (req, res, next) => {
 const constructItemAndUser = (req, res, next) => {
   req.item = {
     ...req.item,
-    creator: {
+    item_creator: {
       username: req.item.username,
       user_id: req.item.user_id,
     },
@@ -52,8 +52,18 @@ const itemExists = (req, res, next) => {
   next({ status: 401, message: 'item_id does not exist' })
 }
 
+const onlyCreator = (req, res, next) => {
+  if (req.decodedJwt.user_id === req.item.user_id) return next()
+  next({ status: 401, message: 'invalid credentials' })
+}
+
 const constructItem = (req, res, next) => {
-  req.item = { ...req.item, ...req.body, item_price: parseFloat(req.body.item_price), user_id: 1 }
+  req.item = {
+    ...req.item,
+    ...req.body,
+    item_price: parseFloat(req.body.item_price),
+    user_id: req.decodedJwt.user_id,
+  }
   next()
 }
 
@@ -87,14 +97,11 @@ const deleteItem = (req, res, next) => {
 
 const convertItemPrice = (item) => ({ ...item, item_price: parseFloat(item.item_price) })
 
-const sendItems = (req, res) => res.json({ data: req.items.map(convertItemPrice) })
-
-const sendItem =
-  (status = 200) =>
-  (req, res) =>
-    res.status(status).json({ data: convertItemPrice(req.item) })
-
-const sendItemId = (req, res) => res.json({ item_id: req.item.item_id })
+const convertItemPrices = (req, res, next) => {
+  if (req.items) req.items = req.items.map(convertItemPrice)
+  if (req.item) req.item = convertItemPrice(req.item)
+  next()
+}
 
 module.exports = {
   getItems,
@@ -102,11 +109,10 @@ module.exports = {
   getItem,
   constructItemAndUser,
   itemExists,
+  onlyCreator,
   constructItem,
   addItem,
   updateItem,
   deleteItem,
-  sendItems,
-  sendItem,
-  sendItemId,
+  convertItemPrices,
 }

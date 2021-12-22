@@ -1,25 +1,39 @@
-const db = require('../../data/db-config')
+const Model = require('../global-model')
 
+const getUser = (req, res, next) => {
+  const { username } = req.body
 
-const usernameIsUnique = (req, res, next) =>{
-  
-    db.findBy(req.body.username)
-   .then(user => {
-     if (user === undefined) {
-       next();
-     } else {
-       next({status:400,  message: "User does not exists" });
-     }
-   });
+  Model.getBy('users', { username: username })
+    .then((user) => {
+      req.user = user
+      next()
+    })
+    .catch(next)
+}
 
- }
+const usernameIsUnique = (req, res, next) => {
+  if (req.user) return next({ status: 404, message: 'username must be unique' })
+  req.user = req.body
+  next()
+}
 
+const userExists = (req, res, next) => {
+  if (req.user) return next()
+  next({ status: 404, message: 'user not found' })
+}
 
+const registerUser = (req, res, next) => {
+  Model.add('users', req.user)
+    .then((user) => {
+      req.user = user
+      next()
+    })
+    .catch(next)
+}
 
-
-
-
- module.export = {
-usernameIsUnique,
-
- }
+module.exports = {
+  getUser,
+  usernameIsUnique,
+  userExists,
+  registerUser,
+}
