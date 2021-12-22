@@ -78,7 +78,9 @@ const updateItem = (req, res, next) => {
 }
 
 const deleteItem = (req, res, next) => {
-  Model.remove('items', { item_id: req.item.item_id })
+  const { item_id } = req.item
+
+  Model.remove('items', { item_id })
     .then(() => next())
     .catch(next)
 }
