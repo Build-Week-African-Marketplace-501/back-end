@@ -1,34 +1,39 @@
-// const Users = require('./user-model.js')
+const Model = require('../global-model')
 
-const usernameIsUnique = (req, res, next) =>{
-  
-   usernameIsUnique.findBy(req.body.username)
-  .then(user => {
-    if (user === undefined) {
-      next();
-    } else {
-      res.status(400).json({ error: "User exists" });
-    }
-  });
+const getUser = (req, res, next) => {
+  const { username } = req.body
+
+  Model.getBy('users', { username: username })
+    .then((user) => {
+      req.user = user
+      next()
+    })
+    .catch(next)
 }
-const userIdExists = (req, res, next) => {
-  userIdExists.findBy(req.body.username)
-  .then(user => {
-   
-  if(userIdExists === user){
-  res.json(user);
-  }
-   else if (!req.body) {
-  res.status(400).json({ errorMessage: "no user data" });
-} else if (!req.body.username || !req.body.password){
-  res.status(400).json({ errorMessage: "Please provide {username:'', password:''}" });
-} else{
+
+const usernameIsUnique = (req, res, next) => {
+  if (req.user) return next({ status: 404, message: 'username must be unique' })
+  req.user = req.body
   next()
-
 }
-  })
-};
+
+const userExists = (req, res, next) => {
+  if (req.user) return next()
+  next({ status: 404, message: 'user not found' })
+}
+
+const registerUser = (req, res, next) => {
+  Model.add('users', req.user)
+    .then((user) => {
+      req.user = user
+      next()
+    })
+    .catch(next)
+}
+
 module.exports = {
+  getUser,
   usernameIsUnique,
-  userIdExists,
+  userExists,
+  registerUser,
 }
