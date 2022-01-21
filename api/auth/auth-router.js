@@ -29,3 +29,24 @@ router.post(
 router.get('/logout', restricted, sendMessage('user logged out successfully'))
 
 module.exports = router
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
